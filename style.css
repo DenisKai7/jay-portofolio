@@ -655,7 +655,7 @@ section {
   transition: color 0.3s ease;
 }
 .footer a:hover {
-  color: var(--main-color);
+  color: var(--second-bg-color);
 }
 .social-icons {
   display: flex;
