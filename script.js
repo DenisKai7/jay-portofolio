@@ -82,6 +82,35 @@ function type() {
 // Mulai efek ketikan
 type();
 
+function openModal(imageSrc) {
+  const modal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+  modal.style.display = "block";
+  modalImage.src = imageSrc;
+}
+
+function closeModal() {
+  const modal = document.getElementById("imageModal");
+  modal.style.display = "none";
+}
+
+// Menutup modal saat mengklik di luar gambar
+window.onclick = function (event) {
+  const modal = document.getElementById("imageModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+// Fungsi untuk menampilkan foto tambahan
+function showMore() {
+  const hiddenItems = document.querySelectorAll(".gallery-item.hidden");
+  hiddenItems.forEach((item) => {
+    item.classList.remove("hidden");
+  });
+  document.querySelector(".btn.view-more").style.display = "none"; // Sembunyikan tombol setelah diklik
+}
+
 // Certifications Section - More Button Functionality
 document.addEventListener("DOMContentLoaded", function () {
   const moreBtn = document.getElementById("more-btn");

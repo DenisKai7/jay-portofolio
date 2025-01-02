@@ -211,29 +211,250 @@ section {
 .about {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Ubah ke flex-start agar konten sejajar di atas */
   gap: 10rem;
   background: var(--second-bg-color);
 }
+
+.about-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem; /* Jarak antara foto dan education-card */
+}
+
 .about-img img {
   width: 32vw;
   border-radius: 50%;
   box-shadow: 0 0 25px var(--main-color);
   transition: 0.4s ease-in-out;
 }
+
 .about-img img:hover {
   transform: scale(1.1);
   box-shadow: 0 0 50px var(--main-color);
 }
+
 .about-content h2 {
   font-size: 7rem;
   text-align: left;
 }
+
 .about-content p {
   font-size: 1.8rem;
 }
+
 .about-content .btn {
   margin: 3rem 0;
+}
+
+/* Styling untuk education-card */
+.education-card {
+  width: 100%; /* Sesuaikan lebar card */
+  max-width: 350px; /* Batasi lebar maksimum */
+  background: var(--second-bg-color);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.education-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px var(--main-color);
+}
+
+.card-header h3 {
+  margin: 2rem 0;
+  font-size: 3rem;
+  color: var(--main-color);
+  margin-bottom: 1rem;
+}
+
+.education-item h4 {
+  font-size: 2.5rem;
+  color: var(--main-color);
+  margin-bottom: 1rem;
+}
+
+.education-item p {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.education-item p strong {
+  color: var(--main-color);
+}
+
+.education-details p {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-top: 1rem;
+}
+
+.card-footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.card-footer .btn {
+  background: var(--main-color);
+  color: var(--bg-color);
+  padding: 1 rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.6rem;
+  transition: background 0.3s ease-in-out;
+}
+
+.card-footer .btn:hover {
+  color: #ea580c;
+  background: var(--second-color);
+}
+
+/* Styling untuk gallery */
+.gallery {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.gallery .heading {
+  font-size: 5rem;
+  margin-bottom: 3rem;
+  color: var(--text-color);
+}
+
+.gallery .heading span {
+  color: var(--main-color);
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolom dengan ukuran sama */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--main-color);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Efek overlay untuk gallery item */
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.gallery-item:hover::before {
+  opacity: 1;
+}
+
+/* Teks overlay (opsional) */
+.gallery-item::after {
+  content: "Click to View";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* Menyembunyikan foto tambahan */
+.gallery-item.hidden {
+  display: none;
+}
+
+/* Styling untuk tombol "View More" */
+.btn.view-more {
+  margin-top: 2rem;
+  background: var(--main-color);
+  color: var(--bg-color);
+  padding: 1rem  1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.btn.view-more:hover {
+  background: darken(var(--main-color), 10%);
+}
+
+/* Styling untuk modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0 , 0, 0, 0.9); /* Background gelap dengan transparansi */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #ea580c;
+  text-decoration: none;
+  cursor: pointer;
 }
 ::-webkit-scrollbar {
   width: 10px;
