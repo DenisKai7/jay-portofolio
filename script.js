@@ -111,52 +111,55 @@ function showMore() {
   document.querySelector(".btn.view-more").style.display = "none"; // Sembunyikan tombol setelah diklik
 }
 
-// Certifications Section - More Button Functionality
 document.addEventListener("DOMContentLoaded", function () {
   const moreBtn = document.getElementById("more-btn");
-  const certificationsGrid = document.querySelector(".certifications-grid");
-
-  // Additional certifications data
-  const additionalCertifications = [
-    {
-      img: "images/python-logo.png",
-      title: "Python Programming",
-      issuer: "Python Institute",
-      description: "Advanced Python programming certification",
-    },
-    {
-      img: "images/docker-logo.png",
-      title: "Docker Essentials",
-      issuer: "Docker Inc.",
-      description: "Containerization and Docker fundamentals",
-    },
-    {
-      img: "images/aws-logo.png",
-      title: "AWS Certified",
-      issuer: "Amazon Web Services",
-      description: "Cloud computing and AWS services",
-    },
-  ];
+  const backBtn = document.getElementById("back-btn");
+  const certificationCards = document.querySelectorAll(".certification-card");
 
   moreBtn.addEventListener("click", function () {
-    // Add additional certifications
-    additionalCertifications.forEach((cert) => {
-      const card = document.createElement("div");
-      card.className = "certification-card";
-
-      card.innerHTML = `
-        <img src="${cert.img}" alt="${cert.title}">
-        <div class="certification-info">
-          <h3>${cert.title}</h3>
-          <h4>${cert.issuer}</h4>
-          <p>${cert.description}</p>
-        </div>
-      `;
-
-      certificationsGrid.appendChild(card);
+    certificationCards.forEach((card) => {
+      card.classList.remove("hidden");
     });
+    moreBtn.classList.add("hidden");
+    backBtn.classList.remove("hidden");
+  });
 
-    // Hide the more button after showing all certifications
-    moreBtn.style.display = "none";
+  backBtn.addEventListener("click", function () {
+    certificationCards.forEach((card, index) => {
+      if (index >= 3) {
+        card.classList.add("hidden");
+      }
+    });
+    moreBtn.classList.remove("hidden");
+    backBtn.classList.add("hidden");
+  });
+});
+
+// JavaScript untuk menangani modal
+document.addEventListener("DOMContentLoaded", function () {
+  // Ambil semua gambar sertifikat
+  const certificateImages = document.querySelectorAll(".certificate-img");
+  const modal = document.getElementById("certificateModal");
+  const modalImg = document.getElementById("modalImage");
+  const closeBtn = document.querySelector(".close");
+
+  // Tambahkan event listener untuk setiap gambar
+  certificateImages.forEach((img) => {
+    img.addEventListener("click", function () {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+    });
+  });
+
+  // Tutup modal ketika tombol close diklik
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // Tutup modal ketika area di luar gambar diklik
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
   });
 });
