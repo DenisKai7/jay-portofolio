@@ -126,40 +126,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   backBtn.addEventListener("click", function () {
     certificationCards.forEach((card, index) => {
-      if (index >= 3) {
+      if (index >= 4) {
         card.classList.add("hidden");
       }
     });
     moreBtn.classList.remove("hidden");
     backBtn.classList.add("hidden");
-  });
-});
-
-// JavaScript untuk menangani modal
-document.addEventListener("DOMContentLoaded", function () {
-  // Ambil semua gambar sertifikat
-  const certificateImages = document.querySelectorAll(".certificate-img");
-  const modal = document.getElementById("certificateModal");
-  const modalImg = document.getElementById("modalImage");
-  const closeBtn = document.querySelector(".close");
-
-  // Tambahkan event listener untuk setiap gambar
-  certificateImages.forEach((img) => {
-    img.addEventListener("click", function () {
-      modal.style.display = "block";
-      modalImg.src = this.src;
-    });
-  });
-
-  // Tutup modal ketika tombol close diklik
-  closeBtn.addEventListener("click", function () {
-    modal.style.display = "none";
-  });
-
-  // Tutup modal ketika area di luar gambar diklik
-  modal.addEventListener("click", function (event) {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
   });
 });
